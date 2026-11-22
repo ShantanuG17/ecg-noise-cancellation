@@ -29,5 +29,13 @@ Environment: conda (ecg-nc), Python 3.11, Windows 11.
 - tests/test_data_metrics.py: shapes, determinism, split disjointness,
   scale/pathway/leakage behaviour, hand-computed metric values.
 
+## 2026-11-22: LMS baseline
+- common.py: delay_matrix (shared by baseline and modification, so both get identical inputs).
+- baseline.py: LMS exactly as in the guide (w0 = 0, residual before update,
+  half-squared-error convention). Divergence is left visible as inf/nan.
+- tests: guide hand example (e=[1,0.5], w=0.75), zero reference, mu=0, M > N,
+  no input mutation, argument validation, SNR gain on synthetic data,
+  divergence at mu far above the stability limit.
+  
 ## AI assistance
 Used Claude to plan the project structure and experiment protocol.
