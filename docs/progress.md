@@ -37,5 +37,28 @@ Environment: conda (ecg-nc), Python 3.11, Windows 11.
   no input mutation, argument validation, SNR gain on synthetic data,
   divergence at mu far above the stability limit.
   
+## 2026-11-22: Dev observations and tuning plan (before experiments)
+
+- Observation (dev seed 0 only, before experiments), SNR improvement in dB:
+  scale 0.1: NLMS mu=0.5 -8.8, NLMS mu=0.05 2.2, LMS mu=0.02 1.6
+  scale 1:   NLMS mu=0.5 8.2,  NLMS mu=0.05 13.2, LMS mu=0.02 14.5
+  scale 10:  NLMS mu=0.5 27.8, NLMS mu=0.05 14.4, LMS mu=0.02 diverged (NaN)
+  Findings: (a) LMS diverges at high scale, NLMS does not (supports hypothesis);
+  (b) best NLMS mu still depends on scale because the ECG acts as adaptation
+  noise independent of reference scale; (c) my prediction that LMS would barely
+  adapt at scale 0.1 was wrong (it gains 1.6 dB). mu must be tuned on validation
+  data for both methods, not chosen by hand. Test threshold at scale 0.1 removed
+  (unchecked assumption of mine).
+
+### Pre-declared tuning decisions
+- Grids (validation, scale 1 only): M in {4, 8, 16, 32}. LMS mu log-spaced
+  1e-4 to 1e-1; NLMS mu log-spaced 1e-3 to 1. 8 mu values each (32 configs
+  per method). Best = highest mean SNR improvement on the 10 validation recordings.
+- Divergence: a diverged run counts as a failure, reported as a count per
+  method and condition, never dropped silently. Paired differences are
+  reported on recordings where both ran, plus the failure counts.
+- Metric caveat: SNR improvement depends on interference strength, so compare
+  methods within a scale, not across scales.
+  
 ## AI assistance
 Used Claude to plan the project structure and experiment protocol.
