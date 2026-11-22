@@ -21,8 +21,13 @@ Environment: conda (ecg-nc), Python 3.11, Windows 11.
 - Uncertainty: 95% CI over recordings (paired).
 - Ablation: to be decided in the experiments step.
 
-### Next
-- data.py, metrics.py, then LMS baseline + tests.
+## 2026-11-22: Data and metrics
+- data.py: guide generator + optional pathway change (switch at change_at s,
+  second pathway [-0.20, 0.30, -0.10]) and leakage (r <- r + leak*s).
+- metrics.py: MSE, SNR, primary metric SNR improvement after warm-up.
+  Non-finite outputs give NaN so divergence is recorded, not hidden.
+- tests/test_data_metrics.py: shapes, determinism, split disjointness,
+  scale/pathway/leakage behaviour, hand-computed metric values.
 
 ## AI assistance
 Used Claude to plan the project structure and experiment protocol.
