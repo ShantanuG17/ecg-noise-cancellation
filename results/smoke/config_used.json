@@ -1,0 +1,45 @@
+{
+  "name": "smoke",
+  "seconds": 12,
+  "warmup_s": 1.0,
+  "M_grid": [
+    8,
+    16
+  ],
+  "lms_mu_grid": {
+    "lo": 0.001,
+    "hi": 0.1,
+    "n": 3
+  },
+  "nlms_mu_grid": {
+    "lo": 0.01,
+    "hi": 1.0,
+    "n": 3
+  },
+  "nlms_eps": 1e-06,
+  "val_seeds": [
+    100,
+    102
+  ],
+  "test_seeds": [
+    1000,
+    1003
+  ],
+  "tune_scale": 1.0,
+  "timing_repeats": 1,
+  "conditions": [
+    {
+      "name": "scale1",
+      "scale": 1.0
+    },
+    {
+      "name": "stress_scale10",
+      "scale": 10.0
+    },
+    {
+      "name": "leakage",
+      "scale": 1.0,
+      "leak": 0.2
+    }
+  ]
+}

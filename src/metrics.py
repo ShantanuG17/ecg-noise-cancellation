@@ -3,8 +3,8 @@ import numpy as np
 
 
 def mse(s, s_hat):
-    """Mean squared error between clean s and estimate s_hat. NaN if s_hat is non-finite."""
-    err = np.sum((np.asarray(s_hat) - np.asarray(s)) ** 2)
+    with np.errstate(over="ignore", invalid="ignore"):
+        err = np.sum((np.asarray(s_hat) - np.asarray(s)) ** 2)
     if not np.isfinite(err):
         return np.nan
     return err / len(s)
@@ -16,12 +16,14 @@ def snr_db(s, s_hat):
     NaN if s_hat is non-finite (diverged filter); +inf if the error is exactly 0.
     """
     s = np.asarray(s)
-    err = np.sum((np.asarray(s_hat) - s) ** 2)
+    with np.errstate(over="ignore", invalid="ignore"):
+        err = np.sum((np.asarray(s_hat) - s) ** 2)
+        power = np.sum(s ** 2)
     if not np.isfinite(err):
         return np.nan
     if err == 0:
         return np.inf
-    return 10.0 * np.log10(np.sum(s ** 2) / err)
+    return 10.0 * np.log10(power / err)
 
 
 def snr_improvement_db(clean, measured, e, warmup):

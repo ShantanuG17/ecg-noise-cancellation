@@ -1,0 +1,22 @@
+{
+  "name": "final",
+  "seconds": 12,
+  "warmup_s": 1.0,
+  "M_grid": [4, 8, 16, 32],
+  "lms_mu_grid": {"lo": 1e-4, "hi": 1e-1, "n": 8},
+  "nlms_mu_grid": {"lo": 1e-3, "hi": 1.0, "n": 8},
+  "nlms_eps": 1e-6,
+  "val_seeds": [100, 110],
+  "test_seeds": [1000, 1020],
+  "tune_scale": 1.0,
+  "timing_repeats": 3,
+  "conditions": [
+    {"name": "scale0.5", "scale": 0.5},
+    {"name": "scale1", "scale": 1.0},
+    {"name": "scale2", "scale": 2.0},
+    {"name": "stress_scale0.1", "scale": 0.1},
+    {"name": "stress_scale10", "scale": 10.0},
+    {"name": "changing_pathway", "scale": 1.0, "change_at": 6.0},
+    {"name": "leakage", "scale": 1.0, "leak": 0.2}
+  ]
+}
