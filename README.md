@@ -45,10 +45,11 @@ Exact versions used for a run are saved in `results/<run>/environment.json`.
 
 ## Install
 ```
-git clone (https://github.com/ShantanuG17/ecg-noise-cancellation)
+git clone https://github.com/ShantanuG17/ecg-noise-cancellation
 cd ecg-noise-cancellation
 git checkout v1.0-submission
-conda env create -f environment.yml && conda activate ecg-nc
+conda env create -f environment.yml
+conda activate ecg-nc
 ```
 or `python -m venv .venv`, activate it, then `python -m pip install -r requirements.txt`.
 
