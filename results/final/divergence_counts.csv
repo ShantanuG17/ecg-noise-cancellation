@@ -1,0 +1,8 @@
+condition,lms,nlms,lms_retuned,nlms_retuned
+scale0.5,0,0,0,0
+scale1,0,0,0,0
+scale2,0,0,0,0
+stress_scale0.1,0,0,0,0
+stress_scale10,20,0,0,0
+changing_pathway,0,0,0,0
+leakage,0,0,0,0
