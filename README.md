@@ -45,7 +45,7 @@ Exact versions used for a run are saved in `results/<run>/environment.json`.
 
 ## Install
 ```
-git clone <REPO_URL>
+git clone (https://github.com/ShantanuG17/ecg-noise-cancellation)
 cd ecg-noise-cancellation
 git checkout v1.0-submission
 conda env create -f environment.yml && conda activate ecg-nc
